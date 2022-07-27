@@ -1,1 +1,16 @@
-test
+trigger: none
+
+pool:
+  vmImage: windows-latest
+
+steps:
+    - powershell: |
+        $url = "https://releases.hashicorp.com/packer/1.8.2/packer_1.8.2_windows_amd64.zip"
+        $outpath = "$PSScriptRoot/packer_1.8.2_windows_amd64.zip"
+        Invoke-WebRequest -Uri $url -OutFile $outpath
+
+        Expand-Archive "$PSScriptRoot/packer_1.8.2_windows_amd64.zip" -DestinationPath "$PSScriptRoot/packer_1.8.2_windows_amd64"
+
+        $env:PACKER_PATH = "$PSScriptRoot/packer_1.8.2_windows_amd64/packer.exe"
+
+        $PACKER_PATH
