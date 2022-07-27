@@ -1,4 +1,4 @@
-trigger: none
+trigger: main
 
 pool:
   vmImage: windows-latest
@@ -22,8 +22,13 @@ stages:
                 Invoke-WebRequest -Uri $url -OutFile $outpath -Verbose
                 Expand-Archive "$(System.DefaultWorkingDirectory)/packer_1.8.2_windows_amd64.zip" -DestinationPath "$(System.DefaultWorkingDirectory)/packer_1.8.2_windows_amd64" -Verbose
                 $(System.DefaultWorkingDirectory)/packer_1.8.2_windows_amd64/packer.exe --version 
-                $(System.DefaultWorkingDirectory)/packer_1.8.2_windows_amd64/packer.exe init $(System.DefaultWorkingDirectory)
 
+          - task: PowerShell@2
+            displayName: 'Packer init'
+            inputs:
+              targetType: 'inline'
+              script: |
+                $(System.DefaultWorkingDirectory)/packer_1.8.2_windows_amd64/packer.exe init $(System.DefaultWorkingDirectory)/windows.pkr.hcl
           - task: PowerShell@2
             displayName: 'Packer validate'
             inputs:
@@ -36,5 +41,5 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-
-                $(System.DefaultWorkingDirectory)/packer_1.8.2_windows_amd64/packer.exe build --var-file=$(System.DefaultWorkingDirectory)/windowsvariable.pkr.hcl $(System.DefaultWorkingDirectory)/windows.pkr.hcl
+                write-host "$(System.DefaultWorkingDirectory)/packer_1.8.2_windows_amd64/packer.exe build --var-file=$(System.DefaultWorkingDirectory)/windows.auto.pkrvars.hcl $(System.DefaultWorkingDirectory)/windows.pkr.hcl"
+                $(System.DefaultWorkingDirectory)/packer_1.8.2_windows_amd64/packer.exe build --var-file=$(System.DefaultWorkingDirectory)/windows.auto.pkrvars.hcl $(System.DefaultWorkingDirectory)/windows.pkr.hcl

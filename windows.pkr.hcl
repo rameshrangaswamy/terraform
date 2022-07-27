@@ -1,6 +1,15 @@
+packer {
+  required_plugins {
+    docker = {
+      version = ">= 0.0.7"
+      source = "github.com/hashicorp/docker"
+    }
+  }
+}
+
 variable "build_resource_group_name" {
   type    = string
-  default = ""
+  default = "myPackerGroup"
 }
 
 variable "client_id" {
