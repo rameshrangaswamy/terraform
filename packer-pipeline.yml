@@ -1,4 +1,4 @@
-trigger: main
+trigger: none
 
 pool:
   vmImage: windows-latest
@@ -41,5 +41,5 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                write-host "$(System.DefaultWorkingDirectory)/packer_1.8.2_windows_amd64/packer.exe build --var-file=$(System.DefaultWorkingDirectory)/windows.auto.pkrvars.hcl $(System.DefaultWorkingDirectory)/windows.pkr.hcl"
-                $(System.DefaultWorkingDirectory)/packer_1.8.2_windows_amd64/packer.exe build --var-file=$(System.DefaultWorkingDirectory)/windows.auto.pkrvars.hcl $(System.DefaultWorkingDirectory)/windows.pkr.hcl
+                write-host "$(System.DefaultWorkingDirectory)/packer_1.8.2_windows_amd64/packer.exe build -var-file="$(System.DefaultWorkingDirectory)/windows.auto.pkrvars.hcl" $(System.DefaultWorkingDirectory)/windows.pkr.hcl"
+                $(System.DefaultWorkingDirectory)/packer_1.8.2_windows_amd64/packer.exe build -var-file="$(System.DefaultWorkingDirectory)/windows.auto.pkrvars.hcl" $(System.DefaultWorkingDirectory)/windows.pkr.hcl
