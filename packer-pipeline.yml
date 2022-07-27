@@ -41,9 +41,4 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
-                  $(System.DefaultWorkingDirectory)/packer_1.8.2_windows_amd64/packer.exe build \
-                  -var "client_id=$(client_id)" \
-                  -var "client_secret=$(client_secret)" \
-                  -var "build_resource_group_name=$(build_resource_group_name)" \ 
-                  -var "subscription_id=$(subscription_id)" \
-                  -var "tenant_id=$(tenant_id)" $(System.DefaultWorkingDirectory)/windows.pkr.hcl
+                  $(System.DefaultWorkingDirectory)/packer_1.8.2_windows_amd64/packer.exe build -var "client_id=$(client_id)" -var "client_secret=$(client_secret)" -var "build_resource_group_name=$(build_resource_group_name)" -var "subscription_id=$(subscription_id)" -var "tenant_id=$(tenant_id)" $(System.DefaultWorkingDirectory)/windows.pkr.hcl
