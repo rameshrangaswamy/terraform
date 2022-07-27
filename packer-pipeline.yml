@@ -8,7 +8,7 @@ variables:
  - group: windows-vm-var
 
 stages:
-  - stage: Install and build packer stage
+  - stage: Install_and_build_packer_stage
     jobs:
       - job: installandbuildimage
         steps:
