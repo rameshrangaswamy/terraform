@@ -7,10 +7,11 @@ steps:
     - powershell: |
         $url = "https://releases.hashicorp.com/packer/1.8.2/packer_1.8.2_windows_amd64.zip"
         $outpath = "$PSScriptRoot/packer_1.8.2_windows_amd64.zip"
-        Invoke-WebRequest -Uri $url -OutFile $outpath
+        Invoke-WebRequest -Uri $url -OutFile $outpath -Verbose
 
-        Expand-Archive "$PSScriptRoot/packer_1.8.2_windows_amd64.zip" -DestinationPath "$PSScriptRoot/packer_1.8.2_windows_amd64"
+        Expand-Archive "$PSScriptRoot/packer_1.8.2_windows_amd64.zip" -DestinationPath "$PSScriptRoot/packer_1.8.2_windows_amd64" -Verbose
 
-        $env:PACKER_PATH = "$PSScriptRoot/packer_1.8.2_windows_amd64/packer.exe"
+        $env:PACKER_PATH = "$PSScriptRoot/packer_1.8.2_windows_amd64/"
 
-        $PACKER_PATH
+        $PACKER_PATH/packer.exe --version
+
