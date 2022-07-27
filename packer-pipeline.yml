@@ -45,5 +45,5 @@ stages:
                       -var client_id="$(client_id)" `
                       -var client_secret="$(client_secret)" `
                       -var build_resource_group_name="$(build_resource_group_name)" `
-                      -varsubscription_id="$(subscription_id)" `
-                      -vartenant_id="$(tenant_id)" $(System.DefaultWorkingDirectory)/windows.pkr.hcl
+                      -var subscription_id="$(subscription_id)" `
+                      -var tenant_id="$(tenant_id)" $(System.DefaultWorkingDirectory)/windows.pkr.hcl
